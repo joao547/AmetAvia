@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DetailsOng">
+
+        <ImageView
+            android:id="@+id/ButtonMenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_menu_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/TitleHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="AmetAvia"
+            android:textSize="40dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:id="@+id/Post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/post"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/TitleHome"/>
+
+        <TextView
+            android:id="@+id/TitleOng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Nome da Institução"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/Post"/>
+
+
+        <TextView
+            android:id="@+id/TextBio"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:text="Bio da instituição Bio da instituição Bio da instituição Bio da instituiçãoBio da instituição"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/Post"
+            app:layout_constraintEnd_toEndOf="@id/Post"
+            app:layout_constraintTop_toBottomOf="@id/TitleOng"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ButtonDoar"
+            style="@style/Button"
+            android:text="Doar"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toStartOf="@id/Post"
+            app:layout_constraintEnd_toEndOf="@id/Post"
+            app:layout_constraintTop_toBottomOf="@id/TextBio"/>
+
+        <FrameLayout
+            android:id="@+id/containerMap"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="@id/Post"
+            app:layout_constraintEnd_toEndOf="@id/Post"
+            app:layout_constraintTop_toBottomOf="@id/ButtonDoar"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ButtonVisitar"
+            style="@style/Button"
+            android:text="Visitar"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toStartOf="@id/Post"
+            app:layout_constraintEnd_toEndOf="@id/Post"
+            app:layout_constraintTop_toBottomOf="@id/containerMap"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ButtonWhatsapp"
+            style="@style/Button"
+            android:text="WhatsApp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintStart_toStartOf="@id/Post"
+            app:layout_constraintEnd_toEndOf="@id/Post"
+            app:layout_constraintTop_toBottomOf="@id/ButtonVisitar"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

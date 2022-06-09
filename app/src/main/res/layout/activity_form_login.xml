@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".FormLogin">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:id="@+id/ContainerComponents"
+            style="@style/ContainerComponent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo"/>
+
+        <EditText
+            android:id="@+id/edit_email"
+            style="@style/Edit_Text"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:drawableRight="@drawable/ic_email"
+            app:layout_constraintStart_toStartOf="@id/ContainerComponents"
+            app:layout_constraintEnd_toEndOf="@id/ContainerComponents"
+            app:layout_constraintTop_toTopOf="@id/ContainerComponents"
+            />
+
+        <EditText
+            android:id="@+id/edit_password"
+            style="@style/Edit_Text"
+            android:inputType="textPassword"
+            android:hint="Senha"
+            android:drawableRight="@drawable/ic_eye"
+            app:layout_constraintStart_toStartOf="@id/ContainerComponents"
+            app:layout_constraintEnd_toEndOf="@id/ContainerComponents"
+            app:layout_constraintTop_toBottomOf="@id/edit_email"
+            />
+
+        <View
+            android:id="@+id/ContainerButtons"
+            style="@style/ContainerButtons"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ContainerComponents"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ButtonStart"
+            style="@style/Button"
+            android:text="@string/text_entrar"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toStartOf="@id/ContainerButtons"
+            app:layout_constraintEnd_toEndOf="@id/ContainerButtons"
+            app:layout_constraintTop_toTopOf="@id/ContainerButtons"/>
+
+        <TextView
+            android:id="@+id/TextOr"
+            style="@style/Text"
+            android:text="Or"
+            app:layout_constraintStart_toStartOf="@id/ContainerButtons"
+            app:layout_constraintEnd_toEndOf="@id/ContainerButtons"
+            app:layout_constraintTop_toBottomOf="@id/ButtonStart"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ButtonNewVol"
+            style="@style/Button"
+            android:text="@string/text_new_vol"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toStartOf="@id/ContainerButtons"
+            app:layout_constraintEnd_toEndOf="@id/ContainerButtons"
+            app:layout_constraintTop_toBottomOf="@id/TextOr"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ButtonNewOng"
+            style="@style/Button"
+            android:text="@string/text_new_ong"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toStartOf="@id/ContainerButtons"
+            app:layout_constraintEnd_toEndOf="@id/ContainerButtons"
+            app:layout_constraintTop_toBottomOf="@id/ButtonNewVol"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

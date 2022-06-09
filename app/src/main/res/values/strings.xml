@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Amet Avia</string>
+    <string name="text_entrar">Start</string>
+    <string name="text_new_vol">Novo Voluntário</string>
+    <string name="text_new_ong">Nova ONG</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
