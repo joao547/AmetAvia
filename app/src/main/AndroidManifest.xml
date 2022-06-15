@@ -7,7 +7,7 @@
          location permissions for the "MyLocation" functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -31,19 +31,25 @@
 
         <activity android:name=".HomePage" />
         <activity android:name=".DetailsOng" />
-        <activity android:name=".FormCadastroVol" />
-        <activity android:name=".FormCadastroOng" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Dashboard"/>
+        <activity
+            android:name=".FormCadastroVol"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FormLogin" />
+        </activity>
         <activity
             android:name=".FormLogin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FormCadastroOng" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Dashboard" />
+
     </application>
 
 </manifest>

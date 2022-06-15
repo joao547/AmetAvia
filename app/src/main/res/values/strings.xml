@@ -16,4 +16,5 @@
     <string name="login_text">Login</string>
     <string name="new_volunteer_text">Quero ser um voluntário</string>
     <string name="new_ong_text">Quero cadastrar minha ONG</string>
+    <string name="save_text">Salvar</string>
 </resources>
