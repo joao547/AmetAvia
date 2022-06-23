@@ -66,7 +66,7 @@ public class Dashboard extends AppCompatActivity {
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Dashboard.this, FormCadastroVol.class);
+                Intent intent = new Intent(Dashboard.this, DetailsOng.class);
                 startActivity(intent);
             }
         });

@@ -1,5 +1,6 @@
 package br.edu.ifpe.tads.ametavia;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -11,8 +12,8 @@ public class FormCadastroOng extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_cadastro_ong);
 
-        getSupportActionBar().hide();
-
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Nova ONG");
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 }

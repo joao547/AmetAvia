@@ -30,7 +30,11 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".HomePage" />
-        <activity android:name=".DetailsOng" />
+        <activity android:name=".DetailsOng">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Dashboard" />
+        </activity>
         <activity
             android:name=".FormCadastroVol"
             android:exported="false">
@@ -46,7 +50,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FormCadastroOng" />
+        <activity android:name=".FormCadastroOng">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FormLogin" />
+        </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".Dashboard" />
 

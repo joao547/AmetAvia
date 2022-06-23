@@ -1,73 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".FormCadastroOng">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/TitleCadastro"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nova ONG"
-        android:textSize="40dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_marginTop="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <View
-        android:id="@+id/containerCadastro"
-        style="@style/ContainerCadastro"
-        app:layout_constraintTop_toBottomOf="@id/TitleCadastro"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
 
-    <EditText
-        android:id="@+id/edit_nome"
-        style="@style/Edit_Text"
-        android:hint="Nome"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="@id/containerCadastro"
-        app:layout_constraintEnd_toEndOf="@id/containerCadastro"
-        app:layout_constraintTop_toTopOf="@id/containerCadastro"
-        />
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:hint="Nome"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/edit_endereco"
-        style="@style/Edit_Text"
-        android:hint="Endereço"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="@id/containerCadastro"
-        app:layout_constraintEnd_toEndOf="@id/containerCadastro"
-        app:layout_constraintTop_toBottomOf="@id/edit_nome"
-        />
+        <EditText
+            android:id="@+id/adredd"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:hint="Endereço"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/edit_bio"
-        style="@style/Edit_Text_Bio"
-        android:hint="Bio"
-        android:inputType="text"
-        android:gravity="top"
-        app:layout_constraintStart_toStartOf="@id/containerCadastro"
-        app:layout_constraintEnd_toEndOf="@id/containerCadastro"
-        app:layout_constraintTop_toBottomOf="@id/edit_endereco"
-        />
+        <EditText
+            android:id="@+id/bio"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:hint="Bio"
+            android:inputType="text" />
 
-    <androidx.appcompat.widget.AppCompatButton
-    android:id="@+id/Button_Plus_Images"
-    style="@style/Button"
-    android:text="Criar"
-    android:textColor="@color/black"
-    android:textSize="18sp"
-    android:textAllCaps="false"
-    app:layout_constraintStart_toStartOf="@id/containerCadastro"
-    app:layout_constraintEnd_toEndOf="@id/containerCadastro"
-    app:layout_constraintTop_toBottomOf="@id/edit_bio"/>
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="@string/save_text" />
+    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
