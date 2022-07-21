@@ -7,8 +7,10 @@ public class Ong {
     private String bio;
 
     public Ong () {}
-    public Ong (String name, String bio) {
+    public Ong(String name, String endereco, String email, String bio) {
         this.name = name;
+        this.endereco = endereco;
+        this.email = email;
         this.bio = bio;
     }
 
@@ -18,5 +20,13 @@ public class Ong {
 
     public String getBio() {
         return bio;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
