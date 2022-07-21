@@ -2,6 +2,8 @@ package br.edu.ifpe.tads.ametavia.models;
 
 public class Ong {
     private String name;
+    private String endereco;
+    private String email;
     private String bio;
 
     public Ong () {}
@@ -14,15 +16,7 @@ public class Ong {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getBio() {
         return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
     }
 }
