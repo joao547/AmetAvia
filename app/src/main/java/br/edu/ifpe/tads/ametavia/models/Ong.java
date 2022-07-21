@@ -5,6 +5,7 @@ public class Ong {
     private String endereco;
     private String email;
     private String bio;
+    private String urlPath;
 
     public Ong () {}
     public Ong(String name, String endereco, String email, String bio) {
@@ -29,4 +30,7 @@ public class Ong {
     public String getEmail() {
         return email;
     }
+
+    public String getUrlPath() {return urlPath;}
+
 }

@@ -17,4 +17,6 @@
     <string name="new_volunteer_text">Quero ser um voluntário</string>
     <string name="new_ong_text">Quero cadastrar minha ONG</string>
     <string name="save_text">Salvar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
