@@ -1,6 +1,8 @@
 package br.edu.ifpe.tads.ametavia.models;
 
-public class Ong {
+import java.io.Serializable;
+
+public class Ong implements Serializable {
     private String name;
     private String endereco;
     private String email;

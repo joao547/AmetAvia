@@ -1,6 +1,7 @@
 package br.edu.ifpe.tads.ametavia.models;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +23,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
 
+import br.edu.ifpe.tads.ametavia.Dashboard;
+import br.edu.ifpe.tads.ametavia.DetailsOng;
 import br.edu.ifpe.tads.ametavia.R;
 
 public class OngAdapter extends ArrayAdapter<Ong> {
@@ -53,6 +57,19 @@ public class OngAdapter extends ArrayAdapter<Ong> {
                 handler.post(() -> imageView.setImageBitmap(image.get()));
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        });
+    }
+
+    private void initiateComponent(Context context, View view, Ong ong) {
+        Button helpButton = view.findViewById(R.id.help_button);
+
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailsOng.class);
+                intent.putExtra("ong", ong);
+                context.startActivity(intent);
             }
         });
     }

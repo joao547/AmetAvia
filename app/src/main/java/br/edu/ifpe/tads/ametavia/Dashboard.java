@@ -67,15 +67,15 @@ public class Dashboard extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    private void initiateComponents() {
-//        helpButton = findViewById(R.id.help_button);
-//
-//        helpButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(Dashboard.this, DetailsOng.class);
-//                startActivity(intent);
-//            }
-//        });
-//    }
+    private void initiateComponents() {
+        helpButton = findViewById(R.id.help_button);
+
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Dashboard.this, DetailsOng.class);
+                startActivity(intent);
+            }
+        });
+    }
 }
