@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "525453066828",
+    "project_id": "ametavia",
+    "storage_bucket": "ametavia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525453066828:android:e5da6daaf6127a9bebaae9",
+        "android_client_info": {
+          "package_name": "br.edu.ifpe.tads.ametavia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525453066828-jvd118m2vumncei3b4advtf7tqcc2rfp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDumulX8LObN5wS3TsZ2mdjwxKPN-iyxYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525453066828-jvd118m2vumncei3b4advtf7tqcc2rfp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
