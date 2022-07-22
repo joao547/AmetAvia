@@ -7,7 +7,7 @@ public class Ong implements Serializable {
     private String endereco;
     private String email;
     private String bio;
-    private String urlPath;
+    private String urlPath = "";
 
     public Ong () {}
     public Ong(String name, String endereco, String email, String bio) {

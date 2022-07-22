@@ -41,6 +41,7 @@ public class OngAdapter extends ArrayAdapter<Ong> {
         TextView bioView = listItem.findViewById(R.id.card_info_text);
         bioView.setText(ongs.get(position).getBio());
         setImage(listItem, ongs.get(position).getUrlPath());
+        initiateComponent(getContext(), listItem, ongs.get(position));
         return listItem;
     }
 
