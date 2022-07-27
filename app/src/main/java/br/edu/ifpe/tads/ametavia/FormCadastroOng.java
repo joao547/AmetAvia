@@ -83,8 +83,10 @@ public class FormCadastroOng extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user, Ong ong) {
-        DatabaseReference drVolunteer = FirebaseDatabase.getInstance().getReference("ong");
-        drVolunteer.setValue(ong);
+        DatabaseReference drOng = FirebaseDatabase.getInstance().getReference("ong");
+        DatabaseReference drOngs = FirebaseDatabase.getInstance().getReference("ongs");
+        drOng.child(user.getUid()).setValue(ong);
+        drOngs.setValue(ong);
         Intent intent = new Intent(FormCadastroOng.this, FormLogin.class);
         startActivity(intent);
     }

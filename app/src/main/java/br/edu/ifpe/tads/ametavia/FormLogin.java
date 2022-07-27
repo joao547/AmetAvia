@@ -33,7 +33,11 @@ public class FormLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_login);
 
+
+
         mAuth = FirebaseAuth.getInstance();
+
+        mAuth.signOut();
 
         initiateComponents();
         getSupportActionBar().hide();
