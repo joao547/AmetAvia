@@ -1,4 +1,4 @@
-package br.edu.ifpe.tads.ametavia.models;
+package br.edu.ifpe.tads.ametavia.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,13 +23,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
 
-import br.edu.ifpe.tads.ametavia.Dashboard;
-import br.edu.ifpe.tads.ametavia.DetailsOng;
+import br.edu.ifpe.tads.ametavia.activities.DetailsOng;
 import br.edu.ifpe.tads.ametavia.R;
+import br.edu.ifpe.tads.ametavia.models.Ong;
 
-public class OngAdapter extends ArrayAdapter<Ong> {
+public class OngListAdapter extends ArrayAdapter<Ong> {
     private ArrayList<Ong> ongs = new ArrayList<>();
-    public OngAdapter(@NonNull Context context, int resource, ArrayList<Ong> ongs) {
+    public OngListAdapter(@NonNull Context context, int resource, ArrayList<Ong> ongs) {
         super(context, resource, ongs);
         this.ongs = ongs;
     }
@@ -40,7 +40,6 @@ public class OngAdapter extends ArrayAdapter<Ong> {
         View listItem = inflater.inflate(R.layout.ong_card_item, null, true);
         TextView bioView = listItem.findViewById(R.id.card_info_text);
         bioView.setText(ongs.get(position).getBio());
-        setImage(listItem, ongs.get(position).getUrlPath());
         initiateComponent(getContext(), listItem, ongs.get(position));
         return listItem;
     }

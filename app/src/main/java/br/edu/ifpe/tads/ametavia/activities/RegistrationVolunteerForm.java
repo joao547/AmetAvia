@@ -1,4 +1,4 @@
-package br.edu.ifpe.tads.ametavia;
+package br.edu.ifpe.tads.ametavia.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -19,29 +19,33 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import br.edu.ifpe.tads.ametavia.models.Ong;
+import br.edu.ifpe.tads.ametavia.R;
 import br.edu.ifpe.tads.ametavia.models.Volunteer;
 
-public class FormCadastroOng extends AppCompatActivity {
+public class RegistrationVolunteerForm extends AppCompatActivity {
 
     private Button saveButton;
     private EditText edEmail;
     private EditText edPass;
     private EditText edName;
-    private EditText edAddress;
+    private EditText edBirthDate;
     private EditText edBio;
+    private EditText edGender;
     private FirebaseAuth mAuth;
+    private final DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form_cadastro_ong);
+        setContentView(R.layout.activity_form_cadastro_vol);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Nova ONG");
+        actionBar.setTitle("Novo voluntário");
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         initComponents();
@@ -54,7 +58,8 @@ public class FormCadastroOng extends AppCompatActivity {
         edPass = findViewById(R.id.password);
         edName = findViewById(R.id.name);
         edBio = findViewById(R.id.bio);
-        edAddress = findViewById(R.id.adredd);
+        edBirthDate = findViewById(R.id.birthDate);
+        edGender = findViewById(R.id.gender);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,17 +68,26 @@ public class FormCadastroOng extends AppCompatActivity {
                 String password = edPass.getText().toString();
                 String name = edName.getText().toString();
                 String bio = edBio.getText().toString();
-                String address = edAddress.getText().toString();
+                String gender = edGender.getText().toString();
+                String birthDateString = edBirthDate.getText().toString();
+                Date birthDate = null;
+                try {
+                    birthDate = formatter.parse(birthDateString);
+                } catch (ParseException e) {
+                    Toast.makeText(RegistrationVolunteerForm.this, "Create Volunteer failed.",
+                            Toast.LENGTH_SHORT).show();
+                }
+                Date finalBirthDate = birthDate;
                 mAuth.createUserWithEmailAndPassword(email,password)
-                        .addOnCompleteListener(FormCadastroOng.this, new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(RegistrationVolunteerForm.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    Ong volunteer = new Ong(name, address, email, bio);
+                                    Volunteer volunteer = new Volunteer(email, name, finalBirthDate, gender, bio);
                                     updateUI(user,volunteer);
                                 } else {
-                                    Toast.makeText(FormCadastroOng.this, "Authentication failed.",
+                                    Toast.makeText(RegistrationVolunteerForm.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -82,10 +96,10 @@ public class FormCadastroOng extends AppCompatActivity {
         });
     }
 
-    private void updateUI(FirebaseUser user, Ong ong) {
-        DatabaseReference drVolunteer = FirebaseDatabase.getInstance().getReference("ong");
-        drVolunteer.setValue(ong);
-        Intent intent = new Intent(FormCadastroOng.this, FormLogin.class);
+    private void updateUI(FirebaseUser user, Volunteer volunteer) {
+        DatabaseReference drVolunteer = FirebaseDatabase.getInstance().getReference("volunteer");
+        drVolunteer.child(user.getUid()).setValue(volunteer);
+        Intent intent = new Intent(RegistrationVolunteerForm.this, FormLogin.class);
         startActivity(intent);
     }
 }

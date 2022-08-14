@@ -1,4 +1,4 @@
-package br.edu.ifpe.tads.ametavia;
+package br.edu.ifpe.tads.ametavia.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import br.edu.ifpe.tads.ametavia.fragments.MapsFragment;
+import br.edu.ifpe.tads.ametavia.R;
 import br.edu.ifpe.tads.ametavia.models.Ong;
 
 public class DetailsOng extends AppCompatActivity {
@@ -29,7 +31,7 @@ public class DetailsOng extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.containerMap, new MapsFragment(), "MapsFragment");
+        transaction.add(R.id.containerMap, new MapsFragment(this), "MapsFragment");
         transaction.commitAllowingStateLoss();
     }
 }

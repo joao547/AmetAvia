@@ -1,4 +1,4 @@
-package br.edu.ifpe.tads.ametavia;
+package br.edu.ifpe.tads.ametavia.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -15,8 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+import br.edu.ifpe.tads.ametavia.R;
 import br.edu.ifpe.tads.ametavia.models.Ong;
-import br.edu.ifpe.tads.ametavia.models.OngAdapter;
+import br.edu.ifpe.tads.ametavia.adapters.OngListAdapter;
 
 public class Dashboard extends AppCompatActivity {
 
@@ -34,7 +34,7 @@ public class Dashboard extends AppCompatActivity {
         ongList.add(new Ong("nome3", "endereco3", "email3", "bio3"));
 
         ListView listView = (ListView)findViewById(R.id.list_view);
-        listView.setAdapter(new OngAdapter(this,
+        listView.setAdapter(new OngListAdapter(this,
                         R.layout.ong_card_item, ongList)
         );
 
