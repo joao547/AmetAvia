@@ -3,6 +3,7 @@ package br.edu.ifpe.tads.ametavia.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import br.edu.ifpe.tads.ametavia.R;
+import br.edu.ifpe.tads.ametavia.fragments.MapsFragment;
+import br.edu.ifpe.tads.ametavia.models.Address;
 import br.edu.ifpe.tads.ametavia.models.Volunteer;
 
 public class RegistrationVolunteerForm extends AppCompatActivity {
@@ -36,8 +39,12 @@ public class RegistrationVolunteerForm extends AppCompatActivity {
     private EditText edBirthDate;
     private EditText edBio;
     private EditText edGender;
+    private EditText edAddress;
+    private Address newAddress;
     private FirebaseAuth mAuth;
     private final DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,13 @@ public class RegistrationVolunteerForm extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Novo voluntário");
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container_map,  new MapsFragment(this), "MapsFragment")
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
 
         initComponents();
         mAuth = FirebaseAuth.getInstance();
@@ -60,6 +74,17 @@ public class RegistrationVolunteerForm extends AppCompatActivity {
         edBio = findViewById(R.id.bio);
         edBirthDate = findViewById(R.id.birthDate);
         edGender = findViewById(R.id.gender);
+        edAddress = findViewById(R.id.address);
+
+        edAddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus){
+                    newAddress = ((MapsFragment)fragmentManager.findFragmentByTag("MapsFragment")).foundLatLong(edAddress.getText().toString());
+                    System.out.println(newAddress.toString());
+                }
+            }
+        });
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +109,7 @@ public class RegistrationVolunteerForm extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    Volunteer volunteer = new Volunteer(email, name, finalBirthDate, gender, bio);
+                                    Volunteer volunteer = new Volunteer(email, name, finalBirthDate, gender, newAddress, bio);
                                     updateUI(user,volunteer);
                                 } else {
                                     Toast.makeText(RegistrationVolunteerForm.this, "Authentication failed.",

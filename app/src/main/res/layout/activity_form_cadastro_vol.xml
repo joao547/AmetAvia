@@ -44,6 +44,25 @@
                 android:hint="Gênero"
                 android:inputType="text" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:text="@string/address_title" />
+
+            <FrameLayout
+                xmlns:map="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/container_map"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="15dp"
+                map:uiZoomControls="true"/>
+
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:hint="Endereço" />
+
             <EditText
                 android:id="@+id/bio"
                 android:layout_width="match_parent"

@@ -11,7 +11,7 @@ public class Ong implements Serializable {
     private Address address = new Address();
 
     public Ong () {}
-    public Ong(String name, String endereco, String email, String bio) {
+    public Ong(String name, Address address, String email, String bio) {
         this.name = name;
         this.email = email;
         this.bio = bio;

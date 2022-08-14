@@ -90,7 +90,7 @@ public class RegistrationOngForm extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    Ong volunteer = new Ong(name, "", email, bio);
+                                    Ong volunteer = new Ong(name, newAddress, email, bio);
                                     updateUI(user, volunteer);
                                 } else {
                                     Toast.makeText(RegistrationOngForm.this, "Authentication failed.",

@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import br.edu.ifpe.tads.ametavia.R;
+import br.edu.ifpe.tads.ametavia.models.Address;
 import br.edu.ifpe.tads.ametavia.models.Ong;
 import br.edu.ifpe.tads.ametavia.adapters.OngListAdapter;
 
@@ -36,9 +37,9 @@ public class Dashboard extends AppCompatActivity {
 
         setContentView(R.layout.activity_dashboard);
         ArrayList<Ong> ongList = new ArrayList<>();
-        ongList.add(new Ong("nome1", "endereco1", "email1", "bio1"));
-        ongList.add(new Ong("nome2", "endereco2", "email2", "bio2"));
-        ongList.add(new Ong("nome3", "endereco3", "email3", "bio3"));
+        ongList.add(new Ong("nome1", new Address(), "email1", "bio1"));
+        ongList.add(new Ong("nome2", new Address(), "email2", "bio2"));
+        ongList.add(new Ong("nome3", new Address(), "email3", "bio3"));
 
         ListView listView = (ListView)findViewById(R.id.list_view);
         listView.setAdapter(new OngListAdapter(this,

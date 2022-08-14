@@ -19,11 +19,12 @@ public class Volunteer {
 
     public Volunteer() {}
 
-    public Volunteer(String email, String name, Date birthDate, String gender, String bio) {
+    public Volunteer(String email, String name, Date birthDate, String gender, Address address,String bio) {
         this.email = email;
         this.name = name;
         this.birthDate = birthDate;
         this.gender = gender;
+        this.address = address;
         this.bio = bio;
     }
 }
