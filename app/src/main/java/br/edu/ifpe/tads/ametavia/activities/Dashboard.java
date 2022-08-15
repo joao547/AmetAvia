@@ -34,12 +34,23 @@ public class Dashboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_dashboard);
         ArrayList<Ong> ongList = new ArrayList<>();
-        ongList.add(new Ong("nome1", new Address(), "email1", "bio1"));
-        ongList.add(new Ong("nome2", new Address(), "email2", "bio2"));
-        ongList.add(new Ong("nome3", new Address(), "email3", "bio3"));
+        ongList.add(new Ong(
+                "Lar das vovozinhas",
+                new Address(
+                        -8.0244782,
+                        -34.9183673,
+                        "Estrada do Arraial",
+                        "3259","52051-430",
+                        "Pernambuco",
+                        "Recife",
+                        "Brasil"),
+                "lardasvovozinhas@gmail.com",
+                "Fusce tincidunt, orci sit amet sollicitudin placerat, sapien ipsum blandit turpis, nec rutrum sem nunc a tellus. Integer eu dictum urna, eget ornare nulla. ",
+                "051659865982"));
+        ongList.add(new Ong("nome2", new Address(), "email2", "bio2", "051659865982"));
+        ongList.add(new Ong("nome3", new Address(), "email3", "bio3", "051659865982"));
 
         ListView listView = (ListView)findViewById(R.id.list_view);
         listView.setAdapter(new OngListAdapter(this,
@@ -50,7 +61,7 @@ public class Dashboard extends AppCompatActivity {
                 Toast.makeText(parent.getContext(), "Ong selecionada: " +
                         ongList.get(position).getName(), Toast.LENGTH_SHORT).show());
 
-        initiateComponents();
+//        initiateComponents();
     }
 
     private void initOngs(ArrayList<Ong> ongList, OngListAdapter ongAdapter) {
@@ -93,15 +104,15 @@ public class Dashboard extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void initiateComponents() {
-        helpButton = findViewById(R.id.help_button);
-
-        helpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Dashboard.this, DetailsOng.class);
-                startActivity(intent);
-            }
-        });
-    }
+//    private void initiateComponents() {
+//        helpButton = findViewById(R.id.help_button);
+//
+//        helpButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Dashboard.this, DetailsOng.class);
+//                startActivity(intent);
+//            }
+//        });
+//    }
 }

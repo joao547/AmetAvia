@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -36,29 +38,16 @@ public class OngListAdapter extends ArrayAdapter<Ong> {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
+        String imageURL = "https://images.unsplash.com/photo-1603314585442-ee3b3c16fbcf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
+
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View listItem = inflater.inflate(R.layout.ong_card_item, null, true);
         TextView bioView = listItem.findViewById(R.id.card_info_text);
+        ImageView imageView = listItem.findViewById(R.id.card_main_image);
+        Picasso.get().load(imageURL).into(imageView);
         bioView.setText(ongs.get(position).getBio());
         initiateComponent(getContext(), listItem, ongs.get(position));
         return listItem;
-    }
-
-    private void setImage(View view, String url) {
-        ImageView imageView = (ImageView) view.findViewById(R.id.card_main_image);
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Handler handler = new Handler(Looper.getMainLooper());
-        AtomicReference<Bitmap> image = new AtomicReference<Bitmap>();
-        executor.execute(() -> {
-            String imageURL = "https://images.unsplash.com/photo-1603314585442-ee3b3c16fbcf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
-            try {
-                InputStream in = new URL(url.isEmpty() ? imageURL : url).openStream();
-                image.set(BitmapFactory.decodeStream(in));
-                handler.post(() -> imageView.setImageBitmap(image.get()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     private void initiateComponent(Context context, View view, Ong ong) {

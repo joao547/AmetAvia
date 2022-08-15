@@ -7,14 +7,17 @@ public class Ong implements Serializable {
     private String name;
     private String email;
     private String bio;
+    private String whatsapp;
     private ArrayList<String> images = new ArrayList<String>();
     private Address address = new Address();
 
     public Ong () {}
-    public Ong(String name, Address address, String email, String bio) {
+    public Ong(String name, Address address, String email, String bio, String whatsapp) {
         this.name = name;
         this.email = email;
         this.bio = bio;
+        this.whatsapp = whatsapp;
+        this.address = address;
     }
 
     public String getName() {
@@ -55,5 +58,13 @@ public class Ong implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getWhatsapp() {
+        return whatsapp;
+    }
+
+    public void setWhatsapp(String whatsapp) {
+        this.whatsapp = whatsapp;
     }
 }

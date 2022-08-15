@@ -30,6 +30,8 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
 
     private GoogleMap mMap;
     private Activity activity;
+    private LatLng location = new LatLng(-8.05, -34.9);
+    private String defaultMarkLabel = "Recife";
 
     final private int FINE_LOCATION_REQUEST = 3;
     private boolean fine_location;
@@ -39,6 +41,13 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
     public MapsFragment(Activity activity) {
         super();
         this.activity = activity;
+    }
+
+    public MapsFragment(Activity activity, double latitude, double longitude, String label) {
+        super();
+        this.activity = activity;
+        this.location = new LatLng(latitude, longitude);
+        this.defaultMarkLabel = label;
     }
 
     @Override
@@ -52,12 +61,10 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng recife = new LatLng(-8.05, -34.9);
         mMap.addMarker(new MarkerOptions()
-                .position(recife)
-                .title("Recife"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(recife));
-
+                .position(this.location)
+                .title(defaultMarkLabel));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(this.location, 15));
         mMap.setOnMyLocationButtonClickListener(
                 () -> {
                     Toast.makeText(this.activity,
@@ -118,5 +125,15 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void addMarkMap(br.edu.ifpe.tads.ametavia.models.Address address, String label) {
+        LatLng location = new LatLng(address.getLatitude(), address.getLongitude());
+        mMap.clear();
+        mMap.addMarker(new MarkerOptions()
+                .position(location)
+                .title(label));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 30));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
     }
 }
