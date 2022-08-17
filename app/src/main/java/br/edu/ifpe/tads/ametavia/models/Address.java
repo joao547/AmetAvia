@@ -1,11 +1,14 @@
 package br.edu.ifpe.tads.ametavia.models;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import lombok.Data;
 
 @Data
 public class Address implements Serializable {
+
+    private UUID identifier;
     private double latitude;
     private double longitude;
     private String street;
@@ -89,6 +92,14 @@ public class Address implements Serializable {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public UUID getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(UUID identifier) {
+        this.identifier = identifier;
     }
 
     public String formatted() {
