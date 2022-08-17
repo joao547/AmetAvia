@@ -28,6 +28,7 @@ public class Address implements Serializable {
         this.state = state;
         this.city = city;
         this.country = country;
+        this.identifier = UUID.randomUUID();
     }
 
     public double getLatitude() {
