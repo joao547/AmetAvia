@@ -41,18 +41,22 @@ public class DetailsOng extends AppCompatActivity {
         sampleImages.add("https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1443&q=80");
         sampleImages.add("https://images.unsplash.com/photo-1511275539165-cc46b1ee89bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
 
+        initiateComponent();
+    }
 
+    private void initiateComponent () {
         carouselView = findViewById(R.id.carouselView);
         carouselView.setPageCount(sampleImages.size());
         carouselView.setImageListener(imageListener);
 
-
         final TextView ongNameTextView = (TextView) findViewById(R.id.ong_name);
         final TextView ongBioTextView = (TextView) findViewById(R.id.ong_bio);
+        TextView ongAddressTextView = findViewById(R.id.address);
+
         ongDetailed = (Ong) getIntent().getSerializableExtra("ong");
         ongNameTextView.setText(ongDetailed.getName());
         ongBioTextView.setText(ongDetailed.getBio());
-
+        ongAddressTextView.setText(ongDetailed.getAddress().formatted());
 
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -68,10 +72,6 @@ public class DetailsOng extends AppCompatActivity {
             Picasso.get().load(sampleImages.get(position)).into(imageView);
         }
     };
-
-    public void initiateComponent() {
-        ((MapsFragment)fragmentManager.findFragmentByTag("MapsFragment")).addMarkMap(ongDetailed.getAddress(), ongDetailed.getName());
-    }
 
     public void onClickContact() {
         String url = "https://api.whatsapp.com/send?phone=" + ongDetailed.getWhatsapp();

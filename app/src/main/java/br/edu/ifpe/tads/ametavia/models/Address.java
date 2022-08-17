@@ -90,4 +90,17 @@ public class Address implements Serializable {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    public String formatted() {
+        StringBuilder formatted = new StringBuilder(this.street);
+        formatted.append(", ");
+        formatted.append(this.number);
+        formatted.append(", ");
+        formatted.append(this.city);
+        formatted.append(" - ");
+        formatted.append(this.state);
+        formatted.append(", ");
+        formatted.append(this.postalCode);
+        return formatted.toString();
+    }
 }
