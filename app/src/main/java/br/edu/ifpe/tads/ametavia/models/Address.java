@@ -19,7 +19,7 @@ public class Address implements Serializable {
     private String country;
 
     public Address() {}
-    public Address(double latitude, double longitude, String street, String number ,String postalCode, String state, String city, String country) {
+    public Address(UUID identifier, double latitude, double longitude, String street, String number ,String postalCode, String state, String city, String country) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.street = street;
@@ -28,7 +28,7 @@ public class Address implements Serializable {
         this.state = state;
         this.city = city;
         this.country = country;
-        this.identifier = UUID.randomUUID();
+        this.identifier = identifier;
     }
 
     public double getLatitude() {
