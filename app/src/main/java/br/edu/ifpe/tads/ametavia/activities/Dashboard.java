@@ -1,6 +1,7 @@
 package br.edu.ifpe.tads.ametavia.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import br.edu.ifpe.tads.ametavia.R;
 import br.edu.ifpe.tads.ametavia.models.Address;
@@ -30,15 +34,18 @@ import br.edu.ifpe.tads.ametavia.adapters.OngListAdapter;
 public class Dashboard extends AppCompatActivity {
 
     private Button helpButton;
+    private ExtendedFloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
         ArrayList<Ong> ongList = new ArrayList<>();
         ongList.add(new Ong(
                 "Lar das vovozinhas",
                 new Address(
+                        UUID.randomUUID(),
                         -8.0244782,
                         -34.9183673,
                         "Estrada do Arraial",
@@ -61,7 +68,8 @@ public class Dashboard extends AppCompatActivity {
                 Toast.makeText(parent.getContext(), "Ong selecionada: " +
                         ongList.get(position).getName(), Toast.LENGTH_SHORT).show());
 
-//        initiateComponents();
+        initiateComponents();
+
     }
 
     private void initOngs(ArrayList<Ong> ongList, OngListAdapter ongAdapter) {
@@ -104,15 +112,15 @@ public class Dashboard extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    private void initiateComponents() {
-//        helpButton = findViewById(R.id.help_button);
-//
-//        helpButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(Dashboard.this, DetailsOng.class);
-//                startActivity(intent);
-//            }
-//        });
-//    }
+    private void initiateComponents() {
+        floatingActionButton = findViewById(R.id.fab);
+        floatingActionButton.show();
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Dashboard.this, NearbyOngsActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 }
