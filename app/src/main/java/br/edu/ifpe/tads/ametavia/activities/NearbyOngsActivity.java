@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 import br.edu.ifpe.tads.ametavia.R;
+import br.edu.ifpe.tads.ametavia.adapters.Geofencing;
 import br.edu.ifpe.tads.ametavia.fragments.MapsFragment;
 import br.edu.ifpe.tads.ametavia.models.Address;
 
