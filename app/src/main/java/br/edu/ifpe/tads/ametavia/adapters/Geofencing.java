@@ -1,6 +1,8 @@
 package br.edu.ifpe.tads.ametavia.adapters;
 
-public class Geofensing {
+import java.util.List;
 
-    List<Ge>
+class Geofensing {
+
+    List<String> list;
 }

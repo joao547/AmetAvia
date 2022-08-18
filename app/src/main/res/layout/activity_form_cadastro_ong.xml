@@ -59,6 +59,12 @@
             android:inputType="text" />
 
         <Button
+            android:id="@+id/upload_image"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="@string/upload_text" />
+
+        <Button
             android:id="@+id/save_button"
             android:layout_width="match_parent"
             android:layout_height="64dp"

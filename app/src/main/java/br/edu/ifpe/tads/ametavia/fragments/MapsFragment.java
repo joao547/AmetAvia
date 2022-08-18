@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 public class MapsFragment extends SupportMapFragment implements OnMapReadyCallback {
 
@@ -118,7 +119,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
                         .title(address));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(user, 30));
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
-                return new br.edu.ifpe.tads.ametavia.models.Address(lat,lon, addrs.getThoroughfare(), addrs.getSubThoroughfare(),
+                return new br.edu.ifpe.tads.ametavia.models.Address(UUID.randomUUID(),lat,lon, addrs.getThoroughfare(), addrs.getSubThoroughfare(),
                         addrs.getPostalCode(), addrs.getAdminArea(),  addrs.getSubAdminArea(), addrs.getCountryName());
             }
         } catch (IOException e) {
