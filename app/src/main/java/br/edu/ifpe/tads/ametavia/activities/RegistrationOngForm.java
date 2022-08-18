@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,6 +49,7 @@ public class RegistrationOngForm extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Address newAddress;
     Uri imageuri = null;
+    private static final String TAG = "RegistrationOngForm";
 
     private FragmentManager fragmentManager;
 
@@ -122,7 +124,7 @@ public class RegistrationOngForm extends AppCompatActivity {
                 galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
 
                 // We will be redirected to choose pdf
-                galleryIntent.setType("image/jpg");
+                galleryIntent.setType("image/*");
                 startActivityForResult(galleryIntent, 1);
             }
         });
@@ -139,16 +141,14 @@ public class RegistrationOngForm extends AppCompatActivity {
             dialog = new ProgressDialog(this);
             dialog.setMessage("Uploading");
 
-            // this will show message uploading
-            // while pdf is uploading
-            dialog.show();
             imageuri = data.getData();
             Toast.makeText(RegistrationOngForm.this, imageuri.toString(), Toast.LENGTH_SHORT).show();
 
         }
     }
 
-    private ArrayList<String> uploadImage(FirebaseUser user){
+    private void uploadImage(FirebaseUser user, Ong ong){
+        dialog.show();
         final String[] myurl = {""};
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
         final StorageReference filepath = storageReference.child(user.getUid() + "." + "jpg");
@@ -168,20 +168,25 @@ public class RegistrationOngForm extends AppCompatActivity {
                     dialog.dismiss();
                     Uri uri = task.getResult();
                     myurl[0] = uri.toString();
+                    ArrayList<String> listUri = new ArrayList<String>();
+                    Collections.addAll(listUri, myurl);
+                    ong.setImages(listUri);
+                    Log.i(TAG, "Value = " + uri.toString());
                     Toast.makeText(RegistrationOngForm.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                    saveOng(user,ong);
                 } else {
                     dialog.dismiss();
                     Toast.makeText(RegistrationOngForm.this, "UploadedFailed", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        ArrayList<String> listUri = new ArrayList<String>();
-        Collections.addAll(listUri, myurl);
-        return listUri;
     }
 
     private void updateUI(FirebaseUser user, Ong ong) {
-        ong.setImages(uploadImage(user));
+        uploadImage(user, ong);
+    }
+
+    private void saveOng(FirebaseUser user, Ong ong){
         DatabaseReference drOng = FirebaseDatabase.getInstance().getReference("ong");
         drOng.child(user.getUid()).setValue(ong);
         Intent intent = new Intent(RegistrationOngForm.this, FormLogin.class);

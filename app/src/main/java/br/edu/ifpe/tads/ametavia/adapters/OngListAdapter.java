@@ -38,13 +38,11 @@ public class OngListAdapter extends ArrayAdapter<Ong> {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        String imageURL = "https://images.unsplash.com/photo-1603314585442-ee3b3c16fbcf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
-
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View listItem = inflater.inflate(R.layout.ong_card_item, null, true);
         TextView bioView = listItem.findViewById(R.id.card_info_text);
         ImageView imageView = listItem.findViewById(R.id.card_main_image);
-        Picasso.get().load(imageURL).into(imageView);
+        Picasso.get().load(ongs.get(position).getImages().get(0)).into(imageView);
         bioView.setText(ongs.get(position).getBio());
         initiateComponent(getContext(), listItem, ongs.get(position));
         return listItem;
