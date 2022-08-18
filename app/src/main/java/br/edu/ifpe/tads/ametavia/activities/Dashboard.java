@@ -1,6 +1,7 @@
 package br.edu.ifpe.tads.ametavia.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,7 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.ChildEventListener;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +40,7 @@ import br.edu.ifpe.tads.ametavia.models.Volunteer;
 public class Dashboard extends AppCompatActivity {
 
     private Button helpButton;
+    private ExtendedFloatingActionButton floatingActionButton;
 
     private static final String TAG = "Dashboard";
 
@@ -45,6 +48,7 @@ public class Dashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
         ArrayList<Ong> ongList = new ArrayList<>();
 
         ListView listView = (ListView)findViewById(R.id.list_view);
@@ -58,7 +62,8 @@ public class Dashboard extends AppCompatActivity {
                 Toast.makeText(parent.getContext(), "Ong selecionada: " +
                         ongList.get(position).getName(), Toast.LENGTH_SHORT).show());
 
-//        initiateComponents();
+        initiateComponents();
+
     }
 
     private void initOngs(ArrayList<Ong> ongList, OngListAdapter ongAdapter) {
@@ -105,15 +110,15 @@ public class Dashboard extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    private void initiateComponents() {
-//        helpButton = findViewById(R.id.help_button);
-//
-//        helpButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(Dashboard.this, DetailsOng.class);
-//                startActivity(intent);
-//            }
-//        });
-//    }
+    private void initiateComponents() {
+        floatingActionButton = findViewById(R.id.fab);
+        floatingActionButton.show();
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Dashboard.this, NearbyOngsActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 }
