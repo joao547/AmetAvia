@@ -37,10 +37,11 @@ public class DetailsOng extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_ong);
 
-        sampleImages.add("https://images.unsplash.com/photo-1603314585442-ee3b3c16fbcf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
-        sampleImages.add("https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1443&q=80");
-        sampleImages.add("https://images.unsplash.com/photo-1511275539165-cc46b1ee89bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+        ongDetailed = (Ong) getIntent().getSerializableExtra("ong");
 
+        for (String uri : ongDetailed.getImages()){
+            sampleImages.add(uri);
+        }
         initiateComponent();
     }
 
@@ -53,7 +54,6 @@ public class DetailsOng extends AppCompatActivity {
         final TextView ongBioTextView = (TextView) findViewById(R.id.ong_bio);
         TextView ongAddressTextView = findViewById(R.id.address);
 
-        ongDetailed = (Ong) getIntent().getSerializableExtra("ong");
         ongNameTextView.setText(ongDetailed.getName());
         ongBioTextView.setText(ongDetailed.getBio());
         ongAddressTextView.setText(ongDetailed.getAddress().formatted());
