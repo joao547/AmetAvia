@@ -46,8 +46,7 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
 
         int geofenceTransition = geofencingEvent.getGeofenceTransition();
 
-        if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER ||
-                geofenceTransition == Geofence.GEOFENCE_TRANSITION_EXIT) {
+        if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER ) {
             List<Geofence> triggeringGeofences = geofencingEvent.getTriggeringGeofences();
 
             sendNotification("Há ongs proximas da sua localização!");

@@ -30,8 +30,11 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name=".activities.NearbyOngsActivity"
-            android:exported="false" />
+            android:name=".activities.NearbyOngsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.Dashboard" />
+        </activity>
         <activity android:name=".activities.HomePage" />
         <activity android:name=".activities.DetailsOng">
             <meta-data

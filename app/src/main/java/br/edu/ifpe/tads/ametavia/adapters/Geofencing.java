@@ -71,20 +71,12 @@ public class Geofencing implements ResultCallback {
     }
 
     private PendingIntent getGeofencePendingIntent() {
-        // Reuse the PendingIntent if we already have it.
         if (geofencePendingIntent != null) {
             return geofencePendingIntent;
         }
-
-
         Intent intent = new Intent(context, GeofenceBroadcastReceiver.class);
-//        Intent intent = new Intent("com.aol.android.geofence.ACTION_RECEIVE_GEOFENCE");
-        // We use FLAG_UPDATE_CURRENT so that we get the same pending intent back when
-        // calling addGeofences() and removeGeofences().
-        geofencePendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.
-                FLAG_UPDATE_CURRENT);
+        geofencePendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         Log.i(TAG, geofencePendingIntent.toString());
-
         return geofencePendingIntent;
     }
 
@@ -98,6 +90,7 @@ public class Geofencing implements ResultCallback {
                     public void onSuccess(Void aVoid) {
                         // Geofences added
                         Log.i(TAG, "success geofence listener");
+
                     }
                 })
                 .addOnFailureListener((Activity) context, new OnFailureListener() {

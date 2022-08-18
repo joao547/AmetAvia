@@ -40,17 +40,19 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+
+import br.edu.ifpe.tads.ametavia.models.Ong;
 
 public class MapsFragment extends SupportMapFragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private Activity activity;
     private LocationManager locationManager;
-    Circle mapCircle;
-
+    private Circle mapCircle;
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -83,23 +85,22 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        System.out.println("MAP READY");
         mMap = googleMap;
 
-        mMap.setOnMyLocationButtonClickListener(
-                () -> {
-                    Toast.makeText(this.activity,
-                            "Indo para a sua localização.", Toast.LENGTH_SHORT).show();
-                    return false;
-                });
+        mMap.setOnMyLocationButtonClickListener(() -> {
+            Toast.makeText(this.activity,
+                    "Indo para a sua localização.", Toast.LENGTH_SHORT).show();
+            return false;
+        });
 
-        mMap.setOnMyLocationClickListener(
-                location -> Toast.makeText(this.activity,
-                        "Você está aqui!", Toast.LENGTH_SHORT).show());
-
+        mMap.setOnMyLocationClickListener(location -> Toast.makeText(this.activity, "Você está aqui!", Toast.LENGTH_SHORT).show());
         mMap.setMyLocationEnabled(this.fine_location);
 
+        this.implementEventListener();
+    }
 
+    @SuppressLint("MissingPermission")
+    private void implementEventListener() {
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 100, new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -112,25 +113,16 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
                         .strokeColor(Color.TRANSPARENT)
                         .strokeWidth(2);
                 mapCircle = mMap.addCircle(circleOptions);
-                mMap.addCircle(circleOptions);
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userCurrentLocation, 15));
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 1000, null);
             }
             @Override
-            public void onProviderDisabled(String provider) {
-                // TODO Auto-generated method stub
-            }
+            public void onProviderDisabled(String provider) { }
             @Override
-            public void onProviderEnabled(String provider) {
-                // TODO Auto-generated method stub
-            }
+            public void onProviderEnabled(String provider) { }
             @Override
-            public void onStatusChanged(String provider, int status,
-                                        Bundle extras) {
-                // TODO Auto-generated method stub
-            }
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
         });
-
     }
 
 
@@ -193,7 +185,5 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         mMap.addMarker(new MarkerOptions()
                 .position(location)
                 .title(label));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 30));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
     }
 }
